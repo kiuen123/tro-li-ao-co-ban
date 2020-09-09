@@ -2,10 +2,16 @@
 from datetime import date, datetime
 import speech_recognition
 import pyttsx3
+from googletrans import Translator
 
 #init
 ai_ear = speech_recognition.Recognizer()
 ai_mouth = pyttsx3.init()
+translator = Translator()
+translator = Translator(service_urls=[
+      'translate.google.com',
+      'translate.google.co.vi',
+    ])
 while True:
     #ear
     with speech_recognition.Microphone() as mic:
@@ -37,6 +43,7 @@ while True:
     else:
         ai_brain = "i can hear you"
 
+    translator.translate(ai_brain, dest='vi')
     print("Alpha : "+ ai_brain)
 
     #mouth
