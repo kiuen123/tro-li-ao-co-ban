@@ -3,6 +3,7 @@ from datetime import date, datetime
 import speech_recognition
 import pyttsx3
 from googletrans import Translator
+import os
 
 #init
 ai_ear = speech_recognition.Recognizer()
