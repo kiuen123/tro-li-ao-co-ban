@@ -35,6 +35,10 @@ while True:
     elif "time" in you:
         now = datetime.now()
         ai_brain = "it is " + now.strftime("%H hours %M minutes")
+    elif "open" and "folder" in you:
+        path = "AI_alpha/test"
+        path = os.path.realpath(path)
+        os.startfile(path)
     elif "bye" in you:
         ai_brain = "good bye master have a good time"
         print("Alpha : "+ ai_brain)
