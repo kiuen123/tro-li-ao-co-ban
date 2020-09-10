@@ -2,17 +2,17 @@
 from datetime import date, datetime
 import speech_recognition
 import pyttsx3
-from googletrans import Translator
+# from googletrans import Translator
 import os
 
 #init
 ai_ear = speech_recognition.Recognizer()
 ai_mouth = pyttsx3.init()
-translator = Translator()
-translator = Translator(service_urls=[
-      'translate.google.com',
-      'translate.google.co.vi',
-    ])
+# translator = Translator()
+# translator = Translator(service_urls=[
+#       'translate.google.com',
+#       'translate.google.co.vi',
+#    ])
 while True:
     #ear
     with speech_recognition.Microphone() as mic:
@@ -35,10 +35,11 @@ while True:
     elif "time" in you:
         now = datetime.now()
         ai_brain = "it is " + now.strftime("%H hours %M minutes")
-    elif "open" and "folder" in you:
+    elif "open" in you:
         path = "AI_alpha/test"
         path = os.path.realpath(path)
         os.startfile(path)
+        ai_brain = "Done"
     elif "bye" in you:
         ai_brain = "good bye master have a good time"
         print("Alpha : "+ ai_brain)
@@ -48,7 +49,7 @@ while True:
     else:
         ai_brain = "i can hear you"
 
-    translator.translate(ai_brain, dest='vi')
+#    translator.translate(ai_brain, dest='vi')
     print("Alpha : "+ ai_brain)
 
     #mouth
