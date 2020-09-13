@@ -27,7 +27,7 @@ while True:
     print("You: " + you)
 
     #brain
-    if you=="hi" or you=="hello":
+    if "hi" in you or "hello" in you:
         ai_brain = "hi master"
     elif "today" in you:
         today = date.today()
@@ -36,12 +36,12 @@ while True:
         now = datetime.now()
         ai_brain = "it is " + now.strftime("%H hours %M minutes")
     elif "open" in you:
-        path = "AI_alpha/test"
+        path = "test"
         path = os.path.realpath(path)
         os.startfile(path)
         ai_brain = "Done"
-    elif "bye" in you:
-        ai_brain = "good bye master have a good time"
+    elif "bye" in you or "stop" in you:
+        ai_brain = "good bye master. I hope you have a good time"
         print("Alpha : "+ ai_brain)
         ai_mouth.say(ai_brain)
         ai_mouth.runAndWait()
