@@ -8,6 +8,8 @@ import os
 #init
 ai_ear = speech_recognition.Recognizer()
 ai_mouth = pyttsx3.init()
+voices = ai_mouth.getProperty('voices')
+ai_mouth.setProperty('voice', voices[1].id)
 # translator = Translator()
 # translator = Translator(service_urls=[
 #       'translate.google.com',
