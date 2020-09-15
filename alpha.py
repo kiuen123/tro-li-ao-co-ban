@@ -33,10 +33,18 @@ ai_mouth.setProperty('voice', voices[1].id)
 #    ])
 
 #phần xử lí chính
+#chào hỏi ban đầu
+ai_brain = "hi master. can i help you"
+print("Alpha : "+ ai_brain)
+ai_mouth.say(ai_brain)
+ai_mouth.runAndWait()
 while True:
 #hoạt động của tai
     with speech_recognition.Microphone() as mic:
-        print("Alpha: I'm listening")
+        ai_brain = "I'm listening"
+        print("Alpha : "+ ai_brain)
+        ai_mouth.say(ai_brain)
+        ai_mouth.runAndWait()
         audio = ai_ear.listen(mic)
     print("Alpha: ... ")
     try:
@@ -47,11 +55,8 @@ while True:
     print("You: " + you)
 
 #hoạt động của não
-#chào
-    if "hi" in you or "hello" in you:
-        ai_brain = "hi master"
 #hiển thị ngày hôm nay
-    elif "today" in you:
+    if "today" in you:
         today = date.today()
         ai_brain = "today is " + today.strftime("%B %d, %Y")
 #hiển thị giờ 
@@ -79,6 +84,9 @@ while True:
         #mô tả nằm ở vị trí thứ 0 của danh mục z
         weather_description = z[0]["description"] 
         ai_brain= " Temperature (in Celsius unit) = " + str(current_temperature) + "degrees C. Description = " + str(weather_description)
+#kiểm tra mic
+    elif "can you hear me" in you or "mic test" in you:
+        ai_brain = "yes. i can hear you now"
 #dừng chương trình
     elif "bye" in you or "stop" in you:
         ai_brain = "good bye master. I hope you have a good time"
@@ -88,7 +96,7 @@ while True:
         break
 #ngoại lệ
     else:
-        ai_brain = "i can hear you"
+        ai_brain = "i don't understand what are you talking about"
 
 # translator.translate(ai_brain, dest='vi')
 
