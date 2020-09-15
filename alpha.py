@@ -99,7 +99,7 @@ while True:
     else:
         ai_brain = "i can hear you"
 
-#    translator.translate(ai_brain, dest='vi')
+# translator.translate(ai_brain, dest='vi')
 
     print("Alpha : "+ ai_brain)
 
