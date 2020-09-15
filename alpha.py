@@ -60,7 +60,7 @@ while True:
         ai_brain = "it is " + now.strftime("%H hours %M minutes")
 #mở 1 thư mục
     elif "open" in you:
-        path = "test"
+        path = "MyFolder"
         path = os.path.realpath(path)
         os.startfile(path)
         ai_brain = "Done"
