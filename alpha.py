@@ -69,23 +69,14 @@ while True:
         #lấy API
         response = requests.get("http://api.openweathermap.org/data/2.5/weather?appid=b285f504d19f761f32c51644c825faaa&q=hanoi")
         x = response.json()
-        # key in variable y 
+        # gán khóa vao biến y
         y = x["main"] 
-        # store the value corresponding 
-        # to the "temp" key of y 
-        current_temperature = y["temp"] - 273 #Kelvin to Celsius
-        # store the value corresponding 
-        # to the "pressure" key of y 
-        current_pressure = y["pressure"] 
-        # store the value corresponding 
-        # to the "humidity" key of y 
-        current_humidiy = y["humidity"] 
-        # store the value of "weather" 
-        # key in variable z 
+        #giá trị nhiệt độ
+        #và chuyển độ Kelvin sang Celsius (K -> C)
+        current_temperature = y["temp"] - 273
+        # gán khóa vào biến z
         z = x["weather"]
-        # store the value corresponding  
-        # to the "description" key at  
-        # the 0th index of z 
+        #mô tả nằm ở vị trí thứ 0 của danh mục z
         weather_description = z[0]["description"] 
         ai_brain= " Temperature (in Celsius unit) = " + str(current_temperature) + "degrees C. Description = " + str(weather_description)
 #dừng chương trình
