@@ -6,7 +6,7 @@ import speech_recognition
 #thư viện chuyển từ văn bản thành giọng nói(text to speech)
 import pyttsx3
 #thư viện dịch(tạm ngưng)
-# from googletrans import Translator
+from googletrans import Translator
 #thư viện xử lí thư mục
 import os
 #thư viện đung cho API
@@ -26,11 +26,11 @@ voices = ai_mouth.getProperty('voices')
 ai_mouth.setProperty('voice', voices[1].id)
 
 #dịch(tạm ngưng)
-# translator = Translator()
-# translator = Translator(service_urls=[
-#       'translate.google.com',
-#       'translate.google.co.vi',
-#    ])
+translator = Translator()
+translator = Translator(service_urls=[
+      'translate.google.com',
+      'translate.google.co.vi',
+   ])
 
 #phần xử lí chính
 #chào hỏi ban đầu
@@ -78,11 +78,11 @@ while True:
         y = x["main"] 
         #giá trị nhiệt độ
         #và chuyển độ Kelvin sang Celsius (K -> C)
-        current_temperature = y["temp"] - 273
+        current_temperature =round(y["temp"] - 273 , 1)
         # gán khóa vào biến z
         z = x["weather"]
         #mô tả nằm ở vị trí thứ 0 của danh mục z
-        weather_description = z[0]["description"] 
+        weather_description = z[0]["description"]
         ai_brain= " Temperature (in Celsius unit) = " + str(current_temperature) + "degrees C. Description = " + str(weather_description)
 #kiểm tra mic
     elif "can you hear me" in you or "mic test" in you:
@@ -101,7 +101,10 @@ while True:
 # translator.translate(ai_brain, dest='vi')
 
     print("Alpha : "+ ai_brain)
+    translation = translator.translate(ai_brain, dest='vi')
+    print(translation.origin, ' ---> ', translation.text)
 
 #hoạt động nói của trợ lí
     ai_mouth.say(ai_brain)
     ai_mouth.runAndWait()
+    

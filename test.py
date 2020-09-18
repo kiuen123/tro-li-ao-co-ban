@@ -79,3 +79,13 @@
 #  
 #else: 
 #    print(" City Not Found ") 
+
+
+from googletrans import Translator
+translator = Translator()
+translator = Translator(service_urls=[
+    'translate.google.com',
+    'translate.google.co.vi',
+])
+translation = translator.translate("hello", dest='vi')
+print(translation.origin, ' -> ', translation.text)
