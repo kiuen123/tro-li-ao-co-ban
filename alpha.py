@@ -5,7 +5,7 @@ from datetime import date, datetime
 import speech_recognition
 #thư viện chuyển từ văn bản thành giọng nói(text to speech)
 import pyttsx3
-#thư viện dịch(tạm ngưng)
+#thư viện dịch
 from googletrans import Translator
 #thư viện xử lí thư mục
 import os
@@ -18,41 +18,48 @@ import json
 #khai báo
 #tai của trợ lí
 ai_ear = speech_recognition.Recognizer()
-
 #miệng của trợ lí
 ai_mouth = pyttsx3.init()
 #chỉnh lại giọng nói
 voices = ai_mouth.getProperty('voices')
 ai_mouth.setProperty('voice', voices[1].id)
-
-#dịch(tạm ngưng)
+#dịch
 translator = Translator()
-translator = Translator(service_urls=[
-      'translate.google.com',
-      'translate.google.co.vi',
-   ])
+#chỉnh lại server về VN
+translator = Translator(service_urls=['translate.google.com','translate.google.co.vi',])
 
 #phần xử lí chính
 #chào hỏi ban đầu
-ai_brain = "hi master. can i help you"
+ai_brain = "Hi master. Can i help you"
 print("Alpha : "+ ai_brain)
+#dịch lại lời nói sang tiếng Việt
+translation = translator.translate(ai_brain, dest='vi')
+print(' ---> ', translation.text)
 ai_mouth.say(ai_brain)
 ai_mouth.runAndWait()
+
 while True:
 #hoạt động của tai
     with speech_recognition.Microphone() as mic:
         ai_brain = "I'm listening"
         print("Alpha : "+ ai_brain)
+        #dịch lại lời nói sang tiếng Việt
+        translation = translator.translate(ai_brain, dest='vi')
+        print(' ---> ', translation.text)
         ai_mouth.say(ai_brain)
         ai_mouth.runAndWait()
         audio = ai_ear.listen(mic)
     print("Alpha: ... ")
+    #bắt ngoại lệ của việc nghe
     try:
         you = ai_ear.recognize_google(audio)
     except:
         you = ""
-        
+    #in ra lời nói của bạn
     print("You: " + you)
+    #dịch lại lời nói sang tiếng Việt
+    translation = translator.translate(you, dest='vi')
+    print(' ---> ', translation.text)
 
 #hoạt động của não
 #hiển thị ngày hôm nay
@@ -97,14 +104,12 @@ while True:
 #ngoại lệ
     else:
         ai_brain = "i don't understand what are you talking about"
-
-# translator.translate(ai_brain, dest='vi')
-
+#in ra lời của alpha
     print("Alpha : "+ ai_brain)
+    #dịch lại lời nói sang tiếng Việt
     translation = translator.translate(ai_brain, dest='vi')
-    print(translation.origin, ' ---> ', translation.text)
+    print(' ---> ', translation.text)
 
 #hoạt động nói của trợ lí
     ai_mouth.say(ai_brain)
     ai_mouth.runAndWait()
-    
