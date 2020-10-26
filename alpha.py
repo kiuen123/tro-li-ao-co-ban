@@ -9,9 +9,10 @@ import pyttsx3
 from googletrans import Translator
 #thư viện xử lí thư mục
 import os
-#thư viện đung cho API
+#thư viện dùng cho API
 import requests
 import json
+#thư viện quy trình phụ
 import subprocess
 #còn nữa
 #...............
@@ -47,6 +48,7 @@ while True:
         #dịch lại lời nói sang tiếng Việt
         translation = translator.translate(ai_brain, dest='vi')
         print(' ---> ', translation.text)
+        #hoạt động nói của trợ lí
         ai_mouth.say(ai_brain)
         ai_mouth.runAndWait()
         audio = ai_ear.listen(mic)
@@ -94,6 +96,7 @@ while True:
         ai_brain= " Temperature (in Celsius unit) = " + str(current_temperature) + "degrees C. Description = " + str(weather_description)
 #chơi nhạc
     elif "play music" in you:
+        #mở 1 tiến trình vlc để mở nhạc từ thư mục MyFolder/Music
         p = subprocess.Popen(["C:/Program Files/VideoLAN/VLC/vlc.exe","MyFolder/Music"])
 #kiểm tra mic
     elif "can you hear me" in you or "mic test" in you:
@@ -104,6 +107,7 @@ while True:
         print("Alpha : "+ ai_brain)
         translation = translator.translate(ai_brain, dest='vi')
         print(' ---> ', translation.text)
+        #hoạt động nói của trợ lí
         ai_mouth.say(ai_brain)
         ai_mouth.runAndWait()
         break
