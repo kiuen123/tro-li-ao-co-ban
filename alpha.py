@@ -14,8 +14,6 @@ import requests
 import json
 #thư viện quy trình phụ
 import subprocess
-#còn nữa
-#...............
 
 #khai báo
 #tai của trợ lí
@@ -104,7 +102,9 @@ while True:
 #dừng chương trình
     elif "bye" in you or "stop" in you:
         ai_brain = "good bye master. I hope you have a good time"
+        #in ra lời của alpha
         print("Alpha : "+ ai_brain)
+        #dịch lại lời nói sang tiếng Việt
         translation = translator.translate(ai_brain, dest='vi')
         print(' ---> ', translation.text)
         #hoạt động nói của trợ lí

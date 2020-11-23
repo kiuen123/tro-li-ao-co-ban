@@ -342,5 +342,5 @@
 ## Root Window Looping
 #root.mainloop()
 
-# import subprocess
-# p = subprocess.Popen(["C:/Program Files/VideoLAN/VLC/vlc.exe","MyFolder/Music"])
+import subprocess
+p = subprocess.Popen(["C:/Program Files/VideoLAN/VLC/vlc.exe","MyFolder/Music"])
