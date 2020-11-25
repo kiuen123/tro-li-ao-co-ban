@@ -39,7 +39,7 @@ ai_mouth.say(ai_brain)
 ai_mouth.runAndWait()
 
 while True:
-#hoạt động của tai
+    #hoạt động của tai
     with speech_recognition.Microphone() as mic:
         ai_brain = "I'm listening"
         print("Alpha : "+ ai_brain)
@@ -62,22 +62,22 @@ while True:
     translation = translator.translate(you, dest='vi')
     print(' ---> ', translation.text)
 
-#hoạt động của não
-#hiển thị ngày hôm nay
+    #hoạt động của não
+    #hiển thị ngày hôm nay
     if "today" in you:
         today = date.today()
         ai_brain = "today is " + today.strftime("%B %d, %Y")
-#hiển thị giờ 
+    #hiển thị giờ 
     elif "time" in you:
         now = datetime.now()
         ai_brain = "it is " + now.strftime("%H hours %M minutes")
-#mở 1 thư mục
+    #mở 1 thư mục
     elif "open" in you:
         path = "MyFolder"
         path = os.path.realpath(path)
         os.startfile(path)
         ai_brain = "Done"
-#hiển thị thời tiết
+    #hiển thị thời tiết
     elif "weather" in you:
         #lấy API
         response = requests.get("http://api.openweathermap.org/data/2.5/weather?appid=b285f504d19f761f32c51644c825faaa&q=hanoi")
@@ -92,14 +92,14 @@ while True:
         #mô tả nằm ở vị trí thứ 0 của danh mục z
         weather_description = z[0]["description"]
         ai_brain= " Temperature (in Celsius unit) = " + str(current_temperature) + "degrees C. Description = " + str(weather_description)
-#chơi nhạc
+        #chơi nhạc
     elif "play music" in you:
         #mở 1 tiến trình vlc để mở nhạc từ thư mục MyFolder/Music
         p = subprocess.Popen(["C:/Program Files/VideoLAN/VLC/vlc.exe","MyFolder/Music"])
-#kiểm tra mic
+        #kiểm tra mic
     elif "can you hear me" in you or "mic test" in you:
         ai_brain = "yes. i can hear you now"
-#dừng chương trình
+        #dừng chương trình
     elif "bye" in you or "stop" in you:
         ai_brain = "good bye master. I hope you have a good time"
         #in ra lời của alpha
@@ -111,15 +111,14 @@ while True:
         ai_mouth.say(ai_brain)
         ai_mouth.runAndWait()
         break
-#ngoại lệ
+    #ngoại lệ
     else:
         ai_brain = "i don't understand what are you talking about"
-#in ra lời của alpha
+    #in ra lời của alpha
     print("Alpha : "+ ai_brain)
     #dịch lại lời nói sang tiếng Việt
     translation = translator.translate(ai_brain, dest='vi')
     print(' ---> ', translation.text)
-
-#hoạt động nói của trợ lí
+    #hoạt động nói của trợ lí
     ai_mouth.say(ai_brain)
     ai_mouth.runAndWait()
