@@ -88,3 +88,5 @@ if __name__ == "__main__":
             break
         else:
             talk("i don't understand what are you talking about")
+
+# dự án tạm ngưng hoạt động 1 thời gian không xác định
